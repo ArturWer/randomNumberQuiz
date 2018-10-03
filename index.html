@@ -13,11 +13,14 @@
 	<main>
 		<h2>Input number from 1 to 100.</h2>
 		<form>
-			<input type="number" name="userNumber" min="1" max="100">
-			<p>Your number is ...<span id="msg"></span></p>
-			<p id="userNumbers"></p>
+			<input type="number" name="userNumber" id="userNumber" min="1" max="100" autofocus="true" required pattern="[1-100]">
+			<p >
+				<span class="guessMsg"></span>
+				<span id="listUserNumbers"></span>
+			</p>
+			<p ></p>
 			<button>New game</button>
-			<button>Get answer!</button>
+			<button type="submit" id="getAnswerButton">Get answer!</button>
 		</form>
 	</main>
 	<footer>
