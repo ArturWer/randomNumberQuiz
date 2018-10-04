@@ -25,9 +25,7 @@ h1{
 main{
 	padding-bottom: 20px;
 }
-.wrong{
 
-}
-.correct{
-	
+[type="number"]:invalid{
+	color: red;
 }
