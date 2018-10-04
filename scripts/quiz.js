@@ -3,20 +3,36 @@ let randomNumber = Math.floor(Math.random()*100)+1;
 console.log(randomNumber);
 let attempt = 0, maxAttempt = 10;
 let guessMsg = document.querySelector('.guessMsg');
+let listUserNumbers = document.querySelector('.listUserNumbers');
 
 //add eventListener for button GetAnswer
-let getAnswerButton = document.getElementById('getAnswerButton');
-getAnswerButton.addEventListener('click', 
-	function (event) {
-		getUserNumber();
-}, false);
+let getAnswer = document.getElementById('getAnswer');
+getAnswer.addEventListener('click', checkUserInput);
+
+function checkUserInput (){
+	let userInput = document.getElementById('userInput');
+	let userInputValue = userInput.value;
+	userInputValue = Number(userInputValue);
+	console.log(typeof(userInputValue));
+	if (isNaN(userInputValue)) {
+		console.log("it's NaN");
+	}
+	
+	console.log(`Value is: ${userInput.value}`);
+	/*if (isNaN(userValue))
+		console.log('Not a Number');
+
+	return userValue !== userValue;//if isNaN that return false, NaN != NaN
+	*/
+};
 
 function getUserNumber(){
-	attempt++;
-	let value = document.getElementById('userNumber').value;
-	value = Number(value);
+	if(checkUserInput(userValue)){
+		attempt++;
+	} else return false;
 	if (attempt===1) {
 		guessMsg.textContent = 'Previous guesses:';
-	}
-	console.log(value);
+	};
+	let oldValue = listUserNumbers.textContent;
+	listUserNumbers.textContent = `${oldValue}, ${userValue}, `;
 };
