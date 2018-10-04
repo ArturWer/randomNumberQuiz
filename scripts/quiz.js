@@ -8,24 +8,14 @@ let guessMsg = document.querySelector('.guessMsg');
 let listUserNumbers = document.querySelector('.listUserNumbers');
 let guessButton = document.getElementById('guessButton');
 
-//add eventListener for guessButton
-guessButton.addEventListener('click', checkUserInput);
-
 function checkUserInput (e){
 	e.preventDefault();
 	let userInputValue = userInput.value;
-	userInputValue = Number(userInputValue);
-	console.log(typeof(userInputValue));
 	if (isNaN(userInputValue)) {
-		console.log("it's NaN");
-	}
-	
-	console.log(`Value is: ${userInput.value}`);
-	/*if (isNaN(userValue))
-		console.log('Not a Number');
-
-	return userValue !== userValue;//if isNaN that return false, NaN != NaN
-	*/
+		alert("Your data it isn't a number. (It's NaN)");
+	};	
+	console.log(`Value is: ${userInputValue}`);
+	showNumber(userInputValue);
 };
 //when user input first symbol allow guessButton
 userInput.addEventListener('input', function(){
@@ -37,14 +27,17 @@ userInput.addEventListener('input', function(){
 	};
 	guessButton.disabled = false;
 });
-
-/*function getUserNumber(){
-	if(checkUserInput(userValue)){
-		attempt++;
-	} else return false;
+//add eventListener for guessButton
+guessButton.addEventListener('click', checkUserInput);
+//check and write user's numbers
+function showNumber(userInputValue){
+	attempt++;
 	if (attempt===1) {
 		guessMsg.textContent = 'Previous guesses:';
-	};
-	let oldValue = listUserNumbers.textContent;
-	listUserNumbers.textContent = `${oldValue}, ${userValue}, `;
-};*/
+	};	
+	let newList = listUserNumbers.textContent;
+	if (newList.length>0) {
+		newList += ", ";
+	}
+	listUserNumbers.textContent = `${newList + userInputValue}`;
+};
