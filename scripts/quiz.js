@@ -29,7 +29,7 @@ userInput.addEventListener('input', function(){
 });
 //add eventListener for guessButton
 guessButton.addEventListener('click', checkUserInput);
-//check and write user's numbers
+//check and write user's numbers and add attempt
 function showNumber(userInputValue){
 	attempt++;
 	if (attempt===1) {
@@ -38,6 +38,17 @@ function showNumber(userInputValue){
 	let newList = listUserNumbers.textContent;
 	if (newList.length>0) {
 		newList += ", ";
-	}
+	};
 	listUserNumbers.textContent = `${newList + userInputValue}`;
+	gameOver();
+};
+//game over messege
+function gameOver(){
+	if (attempt>=3) {
+		let gameOverElement = document.createElement('h2');
+		let newText = document.createTextNode('GAME OVER');
+		gameOverElement.appendChild(newText);
+		let el = document.querySelector('p');
+		el.appendChild(gameOverElement);
+	};
 };
