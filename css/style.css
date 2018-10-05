@@ -29,3 +29,8 @@ main{
 [type="number"]:invalid{
 	color: red;
 }
+.newGameButton{
+	background-color: #903232;
+	color: white;
+	font-size: 1em;
+}

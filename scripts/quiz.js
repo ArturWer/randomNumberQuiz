@@ -44,7 +44,7 @@ function showNumber(userInputValue){
 };
 //game over messege
 function gameOver(){
-	if (attempt>=3) {
+	if (attempt>=1) {
 		//add new messege
 		let gameOverElement = document.createElement('h2');
 		let newText = document.createTextNode('GAME OVER');
@@ -53,12 +53,20 @@ function gameOver(){
 		el.appendChild(gameOverElement);
 		//add newGame button
 		let newGameButton = document.createElement('button');
-		let textForButton = document.createTextNode('Start new quiz');
+		let textForButton = document.createTextNode('Start new game');
 		newGameButton.appendChild(textForButton);
+		newGameButton.className = 'newGameButton';
 		let form = document.querySelector('form');
 		form.appendChild(newGameButton);
 		//remove guessButton
 		let containerEl = guessButton.parentNode;
 		containerEl.removeChild(guessButton);
+		//addEventListener for newGameButton
+		newGameButton.addEventListener('click', startNewGame);
 	};
+};
+//start newGame when click on button "Start new quiz"
+function startNewGame(e){
+	e.preventDefault();
+	console.log('fffffffffff');
 };
