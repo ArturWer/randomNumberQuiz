@@ -68,5 +68,6 @@ function gameOver(){
 //start newGame when click on button "Start new quiz"
 function startNewGame(e){
 	e.preventDefault();
-	console.log('fffffffffff');
+	console.log('reload');
+	location.reload();
 };
