@@ -45,10 +45,20 @@ function showNumber(userInputValue){
 //game over messege
 function gameOver(){
 	if (attempt>=3) {
+		//add new messege
 		let gameOverElement = document.createElement('h2');
 		let newText = document.createTextNode('GAME OVER');
 		gameOverElement.appendChild(newText);
 		let el = document.querySelector('p');
 		el.appendChild(gameOverElement);
+		//add newGame button
+		let newGameButton = document.createElement('button');
+		let textForButton = document.createTextNode('Start new quiz');
+		newGameButton.appendChild(textForButton);
+		let form = document.querySelector('form');
+		form.appendChild(newGameButton);
+		//remove guessButton
+		let containerEl = guessButton.parentNode;
+		containerEl.removeChild(guessButton);
 	};
 };
