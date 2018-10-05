@@ -44,7 +44,7 @@ function showNumber(userInputValue){
 };
 //game over messege
 function gameOver(){
-	if (attempt>=1) {
+	if (attempt>=4) {
 		//add new messege
 		let gameOverElement = document.createElement('h2');
 		let newText = document.createTextNode('GAME OVER');
@@ -58,6 +58,8 @@ function gameOver(){
 		newGameButton.className = 'newGameButton';
 		let form = document.querySelector('form');
 		form.appendChild(newGameButton);
+		//disable user input
+		userInput.disabled = true;
 		//remove guessButton
 		let containerEl = guessButton.parentNode;
 		containerEl.removeChild(guessButton);
@@ -68,6 +70,5 @@ function gameOver(){
 //start newGame when click on button "Start new quiz"
 function startNewGame(e){
 	e.preventDefault();
-	console.log('reload');
 	location.reload();
 };
