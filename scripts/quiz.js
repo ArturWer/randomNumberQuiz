@@ -41,8 +41,7 @@ function showNumber(userInputValue){
 		newList += ", ";
 	};
 	listUserNumbers.textContent = `${newList + userInputValue}`;
-	let isWin = checkUserInputNumber(userInputValue);
-	gameOver(isWin);
+	checkUserInputNumber(userInputValue);
 };
 //game over messege
 function gameOver(win){
@@ -71,6 +70,7 @@ function gameOver(win){
 		//added class .won
 		if (win) {
 			document.querySelector('main').className = 'won';
+			document.querySelector('header').className = 'won';
 		}
 	};
 };
@@ -81,11 +81,18 @@ function startNewGame(e){
 };
 //check user input number
 function checkUserInputNumber(userNumber){
-	if (randomNumber === userNumber) {
+	let msg;
+	if (userNumber > randomNumber) {
+		msg = "bigger";
+	} else if (userNumber < randomNumber) {
+		msg = "smaller";		
+	};
+	if (msg) {
+		let el = document.querySelector('.msgBiggerOrSmaller');
+		el.textContent = `Your number is ${msg}`;
+	};
+	if (userNumber === randomNumber) {
 		console.log("You win");
 		gameOver(true);
-	} else {
-		console.log("Don't win");
-		return false;
 	};
 };
