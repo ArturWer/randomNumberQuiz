@@ -15,6 +15,7 @@ function checkUserInput (e){
 		alert("Your data it isn't a number. (It's NaN)");
 	};	
 	console.log(`Value is: ${userInputValue}`);
+	userInputValue = Number(userInputValue);
 	showNumber(userInputValue);
 };
 //when user input first symbol allow guessButton
@@ -40,6 +41,7 @@ function showNumber(userInputValue){
 		newList += ", ";
 	};
 	listUserNumbers.textContent = `${newList + userInputValue}`;
+	checkUserInputNumber(userInputValue);
 	gameOver();
 };
 //game over messege
@@ -71,4 +73,14 @@ function gameOver(){
 function startNewGame(e){
 	e.preventDefault();
 	location.reload();
+};
+//check user input number
+function checkUserInputNumber(userNumber){
+	console.log(`User input number is ${typeof(userNumber)}`);
+	console.log(`Random number is ${typeof(randomNumber)}`);
+	if (randomNumber === userNumber) {
+		console.log("You win");
+	} else {
+
+	};
 };
