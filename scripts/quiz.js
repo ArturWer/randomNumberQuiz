@@ -14,22 +14,9 @@ function checkUserInput (e){
 	if (isNaN(userInputValue)) {
 		alert("Your data it isn't a number. (It's NaN)");
 	};	
-	console.log(`Value is: ${userInputValue}`);
 	userInputValue = Number(userInputValue);
 	showNumber(userInputValue);
 };
-//when user input first symbol allow guessButton
-userInput.addEventListener('input', function(){
-	console.log('User inputted something');
-	let value = userInput.value;
-	if ( (value === "") || ( (value<1)||(value>100) ) ) {
-		guessButton.disabled = true;
-		return true;
-	};
-	guessButton.disabled = false;
-});
-//add eventListener for guessButton
-guessButton.addEventListener('click', checkUserInput);
 //check and write user's numbers and add attempt
 function showNumber(userInputValue){
 	attempt++;
@@ -43,10 +30,29 @@ function showNumber(userInputValue){
 	listUserNumbers.textContent = `${newList + userInputValue}`;
 	checkUserInputNumber(userInputValue);
 };
+//check user input number
+function checkUserInputNumber(userNumber){
+	let msg = null;
+	if (userNumber > randomNumber) {
+		msg = "bigger";
+	} else if (userNumber < randomNumber) {
+		msg = "smaller";		
+	};
+	if (msg) {
+		let el = document.querySelector('.msgBiggerOrSmaller');
+		el.textContent = `Your number is ${msg}`;
+	};
+	if (userNumber === randomNumber) {
+		console.log("You win");
+		gameOver(true);
+	} else if (attempt>=7) {
+		gameOver(false);
+	};
+};
 //game over messege
 function gameOver(win){
 	let msg = win ? "YOU WIN" : "GAME OVER";
-	if (win || (attempt>=2)) {
+	if (msg) {
 		//add new messege
 		let gameOverElement = document.createElement('h2');
 		let newText = document.createTextNode(msg);
@@ -71,7 +77,7 @@ function gameOver(win){
 		if (win) {
 			document.querySelector('main').className = 'won';
 			document.querySelector('header').className = 'won';
-		}
+		};
 	};
 };
 //start newGame when click on button "Start new quiz"
@@ -79,20 +85,15 @@ function startNewGame(e){
 	e.preventDefault();
 	location.reload();
 };
-//check user input number
-function checkUserInputNumber(userNumber){
-	let msg;
-	if (userNumber > randomNumber) {
-		msg = "bigger";
-	} else if (userNumber < randomNumber) {
-		msg = "smaller";		
+//when user input first symbol allow guessButton
+userInput.addEventListener('input', function(){
+	console.log('User inputted something');
+	let value = userInput.value;
+	if ( (value === "") || ( (value<1)||(value>100) ) ) {
+		guessButton.disabled = true;
+		return true;
 	};
-	if (msg) {
-		let el = document.querySelector('.msgBiggerOrSmaller');
-		el.textContent = `Your number is ${msg}`;
-	};
-	if (userNumber === randomNumber) {
-		console.log("You win");
-		gameOver(true);
-	};
-};
+	guessButton.disabled = false;
+});
+//add eventListener for guessButton
+guessButton.addEventListener('click', checkUserInput);
