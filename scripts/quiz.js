@@ -41,15 +41,16 @@ function showNumber(userInputValue){
 		newList += ", ";
 	};
 	listUserNumbers.textContent = `${newList + userInputValue}`;
-	checkUserInputNumber(userInputValue);
-	gameOver();
+	let isWin = checkUserInputNumber(userInputValue);
+	gameOver(isWin);
 };
 //game over messege
-function gameOver(){
-	if (attempt>=4) {
+function gameOver(win){
+	let msg = win ? "YOU WIN" : "GAME OVER";
+	if (win || (attempt>=4)) {
 		//add new messege
 		let gameOverElement = document.createElement('h2');
-		let newText = document.createTextNode('GAME OVER');
+		let newText = document.createTextNode(msg);
 		gameOverElement.appendChild(newText);
 		let el = document.querySelector('p');
 		el.appendChild(gameOverElement);
@@ -76,11 +77,11 @@ function startNewGame(e){
 };
 //check user input number
 function checkUserInputNumber(userNumber){
-	console.log(`User input number is ${typeof(userNumber)}`);
-	console.log(`Random number is ${typeof(randomNumber)}`);
 	if (randomNumber === userNumber) {
 		console.log("You win");
+		gameOver(true);
 	} else {
-
+		console.log("Don't win");
+		return false;
 	};
 };
