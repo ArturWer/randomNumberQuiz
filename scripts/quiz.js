@@ -47,7 +47,7 @@ function showNumber(userInputValue){
 //game over messege
 function gameOver(win){
 	let msg = win ? "YOU WIN" : "GAME OVER";
-	if (win || (attempt>=4)) {
+	if (win || (attempt>=2)) {
 		//add new messege
 		let gameOverElement = document.createElement('h2');
 		let newText = document.createTextNode(msg);
@@ -68,6 +68,10 @@ function gameOver(win){
 		containerEl.removeChild(guessButton);
 		//addEventListener for newGameButton
 		newGameButton.addEventListener('click', startNewGame);
+		//added class .won
+		if (win) {
+			document.querySelector('main').className = 'won';
+		}
 	};
 };
 //start newGame when click on button "Start new quiz"
