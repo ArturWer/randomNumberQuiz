@@ -1,7 +1,7 @@
 //getting random number from 1 to 100
 let randomNumber = Math.floor(Math.random()*100)+1;
 console.log(randomNumber);
-let attempt = 0, maxAttempt = 2;
+let attempt = 0, maxAttempt = 10;
 let userInput = document.getElementById('userInput');
 let validation = document.querySelector('.validation');
 let guessMsg = document.querySelector('.guessMsg');
@@ -93,8 +93,16 @@ function checkHighScore(){
 };
 function showHighScore(){
 	console.log('Must be highScore');
+	if (localStorage.highScore) {
+		let elHighScore = document.querySelector('.highScore');
+		elHighScore.textContent = `High score: ${localStorage.highScore}`;
+	};
 };
 function setHighScore(highScore){
+	if(isNaN(localStorage.highScore)){
+		localStorage.setItem ('highScore', highScore);
+		return;
+	};
 	if (highScore<localStorage.highScore) {
 		localStorage.setItem ('highScore', highScore);
 	};

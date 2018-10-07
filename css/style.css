@@ -29,7 +29,9 @@ h1{
 main{
 	padding-bottom: 20px;
 }
-
+.highScore{
+	color: #372f8a;
+}
 [type="number"]:invalid{
 	color: red;
 }
