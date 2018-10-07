@@ -9,7 +9,7 @@ body{
 main, header{
 	border: 2px solid black;
 	border-radius: 3px;
-	box-shadow: 3px 3px 7px gray;
+	box-shadow: 3px 3px 7px #15170d;
 	margin: 3px;
 	background: rgb(254,252,234); /* Old browsers */
 	background: -moz-linear-gradient(top, rgba(254,252,234,1) 0%, rgba(252,245,58,1) 39%, rgba(252,245,58,1) 39%); /* FF3.6-15 */

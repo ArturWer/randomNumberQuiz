@@ -1,7 +1,7 @@
 //getting random number from 1 to 100
 let randomNumber = Math.floor(Math.random()*100)+1;
 console.log(randomNumber);
-let attempt = 0, maxAttempt = 10;
+let attempt = 0, maxAttempt = 2;
 let userInput = document.getElementById('userInput');
 let validation = document.querySelector('.validation');
 let guessMsg = document.querySelector('.guessMsg');
@@ -45,7 +45,7 @@ function checkUserInputNumber(userNumber){
 	if (userNumber === randomNumber) {
 		console.log("You win");
 		gameOver(true);
-	} else if (attempt>=7) {
+	} else if (attempt>=maxAttempt) {
 		gameOver(false);
 	};
 };
@@ -64,6 +64,7 @@ function gameOver(win){
 		let textForButton = document.createTextNode('Start new game');
 		newGameButton.appendChild(textForButton);
 		newGameButton.className = 'newGameButton';
+		newGameButton.focus = true;
 		let form = document.querySelector('form');
 		form.appendChild(newGameButton);
 		//disable user input
@@ -71,8 +72,8 @@ function gameOver(win){
 		//remove guessButton
 		let containerEl = guessButton.parentNode;
 		containerEl.removeChild(guessButton);
-		//addEventListener for newGameButton
-		newGameButton.addEventListener('click', startNewGame);
+		newGameButton.addEventListener('click', startNewGame, false);
+		document.addEventListener('keypress', startNewGame, false);
 		//added class .won
 		if (win) {
 			document.querySelector('main').className = 'won';
