@@ -78,13 +78,26 @@ function gameOver(win){
 		if (win) {
 			document.querySelector('main').className = 'won';
 			document.querySelector('header').className = 'won';
+			setHighScore(attempt);
 		};
 	};
 };
-//start newGame when click on button "Start new quiz"
 function startNewGame(e){
 	e.preventDefault();
 	location.reload();
+};
+function checkHighScore(){
+	let highScore = localStorage.highScore;
+	console.log(`highScore is: ${highScore}`);
+	if (highScore) { showHighScore(); }
+};
+function showHighScore(){
+	console.log('Must be highScore');
+};
+function setHighScore(highScore){
+	if (highScore<localStorage.highScore) {
+		localStorage.setItem ('highScore', highScore);
+	};
 };
 //when user input first symbol allow guessButton
 userInput.addEventListener('input', function(){
@@ -98,3 +111,4 @@ userInput.addEventListener('input', function(){
 });
 //add eventListener for guessButton
 guessButton.addEventListener('click', checkUserInput);
+checkHighScore();
